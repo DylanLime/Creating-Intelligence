@@ -1,1 +1,419 @@
 <!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Payment Form</title>\n    <style>\n        body { font-family: Arial, sans-serif; }\n        form { width: 300px; margin: auto; }\n        div { margin-bottom: 15px; }\n        label { display: block; margin-bottom: 5px; }\n        input[type='text'], input[type='email'], input[type='number'] { width: 100%; padding: 10px; box-sizing: border-box; }\n        button { padding: 10px; width: 100%; background-color: #28a745; color: white; border: none;\n        cursor: pointer; }\n        button:hover { background-color: #218838; }\n    </style>\n</head>\n<body>\n    <h2>Payment Form</h2>\n    <form id="paymentForm">\n        <div>\n            <label for="name">Name</label>\n            <input type="text" id="name" name="name" required>\n        </div>\n        <div>\n            <label for="email">Email</label>\n            <input type="email" id="email" name="email" required>\n        </div>\n        <div>\n            <label for="amount">Amount</label>\n            <input type="number" id="amount" name="amount" required>\n        </div>\n        <button type="submit">Pay Now</button>\n    </form>\n    <script>\n        document.getElementById('paymentForm').onsubmit = function(event) {\n            event.preventDefault();\n            alert('Payment processed!');\n            // Here you can add logic to handle the payment processing\n        };\n    <\/script>\n</body>\n</html>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Complete Transaction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .payment-container {
+            background: white;
+            border-radius: 20px;
+            max-width: 450px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Banner */
+        .header-banner {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 50%, #2C3E50 100%);
+            position: relative;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            overflow: hidden;
+        }
+
+        .header-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: inherit;
+            clip-path: polygon(0 50%, 100% 30%, 100% 100%, 0 100%);
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-button {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-avatar {
+            position: relative;
+            z-index: 2;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #333;
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #2C3E50;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2C3E50;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2C3E50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #FF6B6B;
+            background-color: white;
+        }
+
+        .row-two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .row-two-cols .form-group input {
+            width: 100%;
+        }
+
+        /* Total Section */
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0 30px 0;
+            padding: 20px 0;
+            border-top: 2px solid #f0f0f0;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .total-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+
+        .total-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2C3E50;
+        }
+
+        /* Submit Button */
+        .btn-complete {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-complete:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-complete:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn-complete:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Message Display */
+        .message {
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .content {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .header-banner {
+                padding: 0 20px;
+            }
+
+            .total-amount {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <!-- Header Banner -->
+        <div class="header-banner">
+            <button class="nav-button">‹</button>
+            <div class="logo">◉</div>
+            <div class="profile-avatar">👤</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1 class="section-title">Payment</h1>
+
+            <!-- Message Alert -->
+            <div id="message" class="message"></div>
+
+            <!-- Card Details Form -->
+            <form id="payment-form">
+                <div class="form-section">
+                    <h2 class="form-section-title">Card Details</h2>
+
+                    <div class="form-group">
+                        <label for="cardholder">Cardholder Name</label>
+                        <input 
+                            type="text" 
+                            id="cardholder" 
+                            placeholder="Firstname Surname" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardnumber">Card Number</label>
+                        <input 
+                            type="text" 
+                            id="cardnumber" 
+                            placeholder="0000 0000 0000 0000" 
+                            maxlength="19"
+                            required
+                        >
+                    </div>
+
+                    <div class="row-two-cols">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date</label>
+                            <input 
+                                type="text" 
+                                id="expiry" 
+                                placeholder="MM/YYYY" 
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input 
+                                type="text" 
+                                id="cvv" 
+                                placeholder="123" 
+                                maxlength="3"
+                                required
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Section -->
+                <div class="total-section">
+                    <span class="total-label">Total</span>
+                    <span class="total-amount">€120</span>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-complete">Complete Transaction</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const cardholder = document.getElementById('cardholder').value.trim();
+            const cardnumber = document.getElementById('cardnumber').value.trim();
+            const expiry = document.getElementById('expiry').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+            const messageDiv = document.getElementById('message');
+
+            // Validation
+            if (!cardholder || !cardnumber || !expiry || !cvv) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            if (cardnumber.replace(/\s/g, '').length !== 16) {
+                showMessage('Card number must be 16 digits', 'error');
+                return;
+            }
+
+            if (cvv.length !== 3) {
+                showMessage('CVV must be 3 digits', 'error');
+                return;
+            }
+
+            if (!expiry.match(/^\d{2}\/\d{4}$/)) {
+                showMessage('Expiry date must be MM/YYYY format', 'error');
+                return;
+            }
+
+            // Disable button during processing
+            const button = document.querySelector('.btn-complete');
+            button.disabled = true;
+            button.textContent = 'Processing...';
+
+            try {
+                // Send request to ESP32 to turn on LED
+                const response = await fetch('http://192.168.4.75:80/led/on', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        status: 'on',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    showMessage('✓ Transaction completed successfully! LED activated.', 'success');
+                    document.getElementById('payment-form').reset();
+                    setTimeout(() => {
+                        messageDiv.classList.remove('success', 'error');
+                        messageDiv.style.display = 'none';
+                    }, 3000);
+                } else {
+                    showMessage('Transaction completed but LED control may have failed', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Error: Could not connect to device. Please try again.', 'error');
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Complete Transaction';
+            }
+        });
+
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + type;
+            messageDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
